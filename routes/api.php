@@ -8,7 +8,7 @@ use App\Http\Controllers\Api\LeadFileController;
 use App\Http\Controllers\Api\LeadStatController;
 use App\Http\Controllers\Api\LeadQuestionController;
 
-Route::get('kokot', [LeadStatController::class, 'show']);
+
 Route::get('/stats/leads', [LeadStatController::class, 'show']);
 Route::get('/user', function (Request $request) {
     return $request->user();

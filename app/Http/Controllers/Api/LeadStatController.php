@@ -19,9 +19,9 @@ class LeadStatController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(LeadStat $leadStat)
+    public function show(Request $request)
     {
-        $date = $leadStat->date;
+        $date = $request->input('date', now()->toDateString());
         $stat = LeadStat::where('date', $date)->firstOrFail();
         return response()->json($stat);
     }

@@ -1,0 +1,29 @@
+[33mcommit 503a47dbd8bcd30833f4a4b8432607b73f05bf93[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: Arkoss99 <zlammi2@seznam.cz>
+Date:   Mon Jun 23 12:42:34 2025 +0200
+
+    User Login system přes routy bez email ověření
+
+[33mcommit 7bbe5b92fe578def226cf56bac9a176f523c3ee7[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: Arkoss99 <zlammi2@seznam.cz>
+Date:   Thu Jun 19 09:30:54 2025 +0100
+
+    Final
+
+[33mcommit 649452267b14bdb062b14522e98b6f9e94f03ad1[m
+Author: Arkoss99 <zlammi2@seznam.cz>
+Date:   Wed Jun 18 15:25:55 2025 +0100
+
+    nefunguje route kokot nevim fakt
+
+[33mcommit c8764424d63f4153a747200a9887748a4bdf8027[m
+Author: Arkoss99 <zlammi2@seznam.cz>
+Date:   Tue Jun 17 14:43:39 2025 +0100
+
+    Database Filled With Data (Too many data gotta fix it)
+
+[33mcommit 2ada5c70765d1eaeb81a3dc44718b4b458a20139[m
+Author: Arkoss99 <zlammi2@seznam.cz>
+Date:   Tue Jun 17 10:23:53 2025 +0100
+
+    Initial project setup: Laravel Sail enviroent with MariaDB and Redis

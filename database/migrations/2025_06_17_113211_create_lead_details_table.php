@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('question_id')->constrained("lead_questions")->cascadeOnDelete();
             $table->text('answer')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
         });
     }

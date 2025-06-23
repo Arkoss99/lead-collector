@@ -45,9 +45,16 @@ class LeadDetailController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(LeadDetail $leadDetail)
+    public function destroy($id)
     {
+        $leadDetail = LeadDetail::findOrFail($id);
         $leadDetail->delete();
         return response()->json(['message' => 'LeadDetail byl smazán.']);
+    }
+    public function restore($id)
+    {
+        $leadDetail = LeadDetail::withTrashed()->findOrFail($id);
+        $leadDetail->restore();
+        return response()->json(['message' => 'LeadDetail byl obnoven.']);
     }
 }

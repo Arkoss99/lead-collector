@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class LeadDetail extends Model
 {
-    use HasFactory;
+
+    use HasFactory, SoftDeletes;
     protected $fillable = [
         'lead_id',
         'question_id',
@@ -22,4 +24,6 @@ class LeadDetail extends Model
     {
         return $this->belongsTo(LeadQuestion::class);
     }
+    
 }
+

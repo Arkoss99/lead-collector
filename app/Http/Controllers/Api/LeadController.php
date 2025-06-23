@@ -57,9 +57,16 @@ class LeadController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Lead $lead)
+    public function destroy($id)
     {
+        $lead = Lead::findOrFail($id);
         $lead->delete();
         return response()->json(['message' => 'Lead byl smazán.']);
+    }
+    public function restore($id)
+    {
+        $lead = Lead::withTrashed()->findOrFail($id);
+        $lead->restore();
+        return response()->json(['message' => 'Lead byl obnoven.']);
     }
 }

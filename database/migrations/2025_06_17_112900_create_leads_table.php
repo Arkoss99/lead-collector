@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->enum('status', ['new', 'contacted', 'closed'])->default('new');
             $table->timestamps();
+            $table->softDeletes();
 
         });
     }

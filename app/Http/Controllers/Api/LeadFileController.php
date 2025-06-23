@@ -26,9 +26,9 @@ class LeadFileController extends Controller
     {
        // dd($request->file('pdf'));
         if($request->hasFile("pdf")) {
-        $path = Storage::putFile(public_path('lead-documents'), $request->file('pdf'));
-        LeadFile::create(["lead_id" => $lead->id, 'file_path' => $path, 'generated_at' => now()]);
-        return response()->json(["file_path" => $path]);
+            $path = $request->file('pdf')->store('lead-documents', 'public');
+            LeadFile::create(["lead_id" => $lead->id, 'file_path' => $path, 'generated_at' => now()]);
+            return response()->json(["file_path" => Storage::url($path)]);
         } else {
             return response()->json(["message" => "No file uploaded."], 400);
         }

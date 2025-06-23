@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'remember_token'
     ];
 
     /**
@@ -30,8 +31,7 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $hidden = [
-        'password',
-        'remember_token',
+        'password'
     ];
 
     /**
@@ -45,5 +45,15 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    public function sendPasswordResetNotification($token)
+    {
+        \Mail::raw(
+            "Váš reset token: $token",
+            function ($message) {
+                $message->to($this->email)
+                    ->subject('Reset hesla');
+            }
+        );
     }
 }

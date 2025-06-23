@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\LeadQuestionController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Http\Controllers\TwoFactorController;
 
 
 Route::get('/stats/leads', [LeadStatController::class, 'show']);
@@ -71,3 +72,10 @@ Route::post('/password/reset', function (Request $request) {
         ? response()->json(['message' => 'Password reset successful'])
         : response()->json(['message' => 'Invalid token or email'], 400);
 });
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/user/2fa/generate', [TwoFactorController::class, 'generate']);
+    Route::post('/user/2fa/enable', [TwoFactorController::class, 'enable']);
+});
+
+Route::post('/login/2fa', [AuthController::class, 'login2fa']);

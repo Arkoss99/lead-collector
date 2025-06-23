@@ -45,6 +45,14 @@ class AuthController extends Controller
         }
 
         $user = Auth::user();
+
+        if ($user->two_factor_auth) { 
+            return response()->json([
+                'message' => '2fa_required',
+                'user_id' => $user->id
+            ], 200);
+        }
+
         $token = $user->createToken('api-token')->plainTextToken;
 
         return response()->json(['token' => $token]);
@@ -54,5 +62,30 @@ class AuthController extends Controller
     {
         $request->user()->currentAccessToken()->delete();
         return response()->json(['message' => 'Logged out']);
+    }
+
+    public function login2fa(Request $request)
+    {
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'otp' => 'required'
+        ]);
+
+        $user = User::find($request->user_id);
+
+        if (!$user || !$user->two_factor_auth) { // změna zde
+            return response()->json(['message' => '2FA not enabled'], 400);
+        }
+
+        $google2fa = app('pragmarx.google2fa');
+        $valid = $google2fa->verifyKey($user->two_factor_auth, $request->otp); // změna zde
+
+        if (!$valid) {
+            return response()->json(['message' => 'Invalid OTP'], 400);
+        }
+
+        $token = $user->createToken('api-token')->plainTextToken;
+
+        return response()->json(['token' => $token]);
     }
 }
